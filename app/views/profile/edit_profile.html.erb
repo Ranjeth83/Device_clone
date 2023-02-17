@@ -1,0 +1,48 @@
+<%= flash[:notice] %>
+<h2>Edit profile</h2>
+<%= form_with url:"/profile/edit_profile",method: :post do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <%= pluralize(@user.errors.count, "error") %>
+
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <br/>
+    <div class="field">
+        <%= form.label :first_name %><br/>
+        <%= form.text_field :first_name,:value=>@user.first_name%>
+    </div><br/>
+
+    <div class="field">
+        <%= form.label :last_name %><br/>
+        <%= form.text_field :lastname,:value=>@user.lastname%>
+    </div><br/>
+
+    </div>
+    <div class="field">
+        <%= form.label :mobile %><br/>
+        <%= form.number_field :mobile ,:value=>@user.mobile%>
+    </div><br/>
+
+    <div class="field">
+        <%= form.label :DOB %><br/>
+        <%= form.date_field :dob,:value=>@user.dob%>
+    </div><br/>
+
+    <div class="field">
+    <%= form.label :header_image %><br/>
+    <%= image_tag(@user.header_image_blob, width:'10%') if @user.header_image.present?  %><br/>
+    <%= form.file_field :header_image%>
+    </div><br/>
+
+    <div class="actions">
+        <%= form.submit "Update profile" %>
+    </div><br/>
+
+    You want to go dashboard? <%= link_to "dashboard", account_dashboard_path %>
+<% end %>

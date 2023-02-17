@@ -1,0 +1,56 @@
+<%= flash[:notice] %>
+<h2>Signup</h2>
+<%= form_with url:"/account/signup",method: :post do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <%= pluralize(@user.errors.count, "error") %>
+
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <br/>
+    <div class="field">
+        <%= form.label :first_name %><br/>
+        <%= form.text_field :first_name%>
+    </div><br/>
+
+    <div class="field">
+        <%= form.label :last_name %><br/>
+        <%= form.text_field :lastname%>
+    </div><br/>
+
+    <div class="field">
+        <%= form.label :email %><br/>
+        <%= form.text_field :email%>
+    </div><br/>
+
+    <div class="field">
+        <%= form.label :password %><br/>
+        <%= form.password_field :password%>
+    </div><br/>
+
+    <div class="field">
+        <%= form.label :conform_password %><br/>
+        <%= form.password_field :password_confirmation%>
+    </div><br/>
+
+    </div>
+    <div class="field">
+        <%= form.label :mobile %><br/>
+        <%= form.number_field :mobile %>
+    </div><br/>
+
+    <div class="field">
+        <%= form.label :DOB %><br/>
+        <%= form.date_field :dob%>
+    </div><br/>
+
+    <div class="actions">
+        <%= form.submit "Create account" %>
+    </div><br/>
+    Already have an account? <%= link_to "login", account_login_path %>
+<% end %>
