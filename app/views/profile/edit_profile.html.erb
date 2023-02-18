@@ -36,7 +36,11 @@
 
     <div class="field">
     <%= form.label :header_image %><br/>
-    <%= image_tag(@user.header_image_blob, width:'10%') if @user.header_image.present?  %><br/>
+    <% if @user.header_image.attached? %>
+      <%= image_tag(@user.header_image_blob, width:'10%') if @user.header_image.present?  %><br/>
+    <% else %>
+      <%= image_tag image_url('avatar.jpg'), alt: "profile", style: "height: 80px; width: 80px" %><br/>
+    <% end %>
     <%= form.file_field :header_image%>
     </div><br/>
 
