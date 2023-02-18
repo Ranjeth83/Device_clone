@@ -31,6 +31,14 @@ class AccountController < ApplicationController
     flash[:notice] = "you logged out"
     redirect_to account_login_url
   end
+  
+  def dashboard
+    if @user
+      flash[:notice] = ""
+    else
+      redirect_to account_login_url
+    end
+  end
 
   def user_params
     params.permit(:first_name,:lastname,:email,:password,:password_confirmation,:encrypted_password,:mobile,:dob)
